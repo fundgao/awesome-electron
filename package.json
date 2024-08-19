@@ -1,0 +1,12 @@
+{
+  "name": "awesome-electron",
+  "version": "1.0.0",
+  "description": "Electron Project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fund",
+  "license": "MIT"
+}
