@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/i18n-ns.js && vite",
     "build": "tsc -b && vite build --mode development",
-    "build:sandbox": "tsc -b && vite build --mode sandbox",
+    "build:test": "tsc -b && vite build --mode test",
     "build:production": "tsc -b && vite build --mode production",
     "preview": "vite preview",
     "swagger": "node script/swagger.js",
