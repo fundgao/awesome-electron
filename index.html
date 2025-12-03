@@ -1,19 +1,28 @@
-<!--index.html-->
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-US">
   <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <title>GOLDOGE Embed H5</title>
+    <meta name="description" content="GOLDOGE Embed H5 is a modern React + Vite application that supports device adaptation and SEO optimization." />
+    <meta name="keywords" content="React, Vite, device adaptation, SEO" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://embed.goldoge.com/" />
+    
+    <meta property="og:title" content="GOLDOGE Embed H5" />
+    <meta property="og:description" content="GOLDOGE Embed H5 is a modern React + Vite application that supports device adaptation and SEO optimization." />
+    <meta property="og:image" content="https://embed.goldoge.com/og-image.jpg" />
+    <meta property="og:url" content="https://embed.goldoge.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GOLDOGE Embed H5" />
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
-
-    <！-- 您也可以此进程中运行其他文件 -->
-    <script src="./renderer.js"></script>
+    <noscript>
+      <p>JavaScript is disabled. Please enable it to use this application.</p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>

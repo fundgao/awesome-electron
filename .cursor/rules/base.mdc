@@ -1,0 +1,101 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Cursor Rules for Project
+
+## Project Overview
+This project uses React 19, TypeScript, Vite, and pnpm as the core stack. The UI library is Shadcn/ui, with Zustand for state management, TailwindCSS for styling, ahooks for utility hooks, Framer Motion for animations, Sonner for notifications, Axios for HTTP requests, BiomeJS for code formatting and linting, Zod for form validation, and react-transition-group for animation transitions. The source code is organized under `src/` with directories: `components`, `pages`, `hooks`, `config`, `i18n`, `assets`, `utils`, `stores`, `constant`, and `request`.
+
+## File Structure Guidelines
+- Place React components in `src/components/`, organized by feature or domain (e.g., `src/components/auth/LoginForm.tsx`).
+- Pages go in `src/pages/`, with each page as a `.tsx` file (e.g., `src/pages/Home.tsx`).
+- Custom hooks reside in `src/hooks/` (e.g., `src/hooks/useAuth.ts`).
+- Configuration files (e.g., API endpoints, environment settings) go in `src/config/`.
+- Internationalization files (translation JSONs) are in `src/i18n/`.
+- Static assets (images, fonts, etc.) are in `src/assets/`.
+- Utility functions are in `src/utils/` (e.g., `src/utils/formatDate.ts`).
+- Zustand stores are in `src/stores/` (e.g., `src/stores/authStore.ts`).
+- Constants (e.g., enums, static data) are in `src/constant/` (e.g., `src/constant/apiEndpoints.ts`).
+- API request logic using Axios is in `src/request/` (e.g., `src/request/userApi.ts`).
+
+## Code Style and Formatting
+- Use BiomeJS for linting and formatting. Run `pnpm biome check` and `pnpm biome format` before committing.
+- Follow TypeScript strict mode. All files must have `.tsx` or `.ts` extensions.
+- Prefer named exports over default exports for components, hooks, and utilities.
+- Use functional components with TypeScript interfaces for props (e.g., `interface ButtonProps { children: React.ReactNode; }`).
+- Organize imports: standard libraries first, third-party libraries second, local modules last, separated by blank lines.
+
+## Component Development
+- Use Shadcn/ui components as the primary UI library. Import from `@/components/ui/*` (e.g., `import { Button } from '@/components/ui/button'`).
+- Wrap components with Framer Motion for animations when needed (e.g., `motion.div` with `initial`, `animate`, and `exit` props).
+- Use react-transition-group for transition effects (e.g., `CSSTransition` for enter/exit animations).
+- Keep components small and focused. Extract logic into custom hooks in `src/hooks/` when possible.
+- Use TailwindCSS classes for styling. Avoid inline styles unless necessary for dynamic values.
+
+## State Management
+- Use Zustand for global state management. Define stores in `src/stores/` with TypeScript interfaces for type safety.
+- Example store:
+  ```ts
+  import { create } from 'zustand';
+  interface AuthState { isAuthenticated: boolean; login: () => void; }
+  export const useAuthStore = create<AuthState>((set) => ({
+    isAuthenticated: false,
+    login: () => set({ isAuthenticated: true }),
+  }));
+  ```
+- Avoid prop drilling; use Zustand for shared state across components.
+
+## Hooks
+- Use ahooks for common React hooks (e.g., `useRequest`, `useDebounce`).
+- Create custom hooks in `src/hooks/` for reusable logic specific to the project.
+- Ensure hooks are typed with TypeScript (e.g., `const useCustomHook = <T>(param: T) => {...}`).
+
+## API Requests
+- Use Axios for HTTP requests, defined in `src/api/`. Create a service file per domain (e.g., `userApi.ts`).
+- Example API service:
+  ```ts
+  import axios from 'axios';
+  const api = axios.create({ baseURL: '/api' });
+  export const fetchUser = async (id: string) => {
+    const response = await api.get(`/users/${id}`);
+    return response.data;
+  };
+  ```
+- Handle errors centrally in `src/utils/errorHandler.ts`.
+
+## Form Validation
+- Use Zod for schema validation. Define schemas in the relevant component or hook file.
+- Example Zod schema:
+  ```ts
+  import { z } from 'zod';
+  export const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+  });
+  ```
+
+## Notifications
+- Use Sonner for toast notifications. Import from `sonner` (e.g., `import { toast } from 'sonner'`).
+- Example usage: `toast.success('Login successful!');`.
+
+## Internationalization
+- Place translation files in `src/i18n/` (e.g., `en.json`, `es.json`).
+- Use a library like `react-i18next` for i18n management.
+- Example: `import { useTranslation } from 'react-i18next'; const { t } = useTranslation();`.
+
+## Best Practices
+- Write type-safe code with TypeScript. Avoid `any` types.
+- Use TailwindCSS utility classes for responsive design (e.g., `sm:`, `md:`, `lg:` prefixes).
+- Optimize performance with React.memo and useCallback where necessary.
+- Write unit tests for components, hooks, and utilities using Vitest.
+- Follow accessibility (a11y) guidelines, especially with Shadcn/ui components.
+- Commit messages should follow Conventional Commits (e.g., `feat: add login form`, `fix: resolve api error handling`).
+
+## Commands
+- Start development server: `pnpm dev`
+- Build for production: `pnpm build`
+- Run linter: `pnpm biome check`
+- Format code: `pnpm biome format`
+- Run tests: `pnpm test`

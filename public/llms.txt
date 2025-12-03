@@ -1,0 +1,238 @@
+# GOLDOGE Acquire - Web3 Cryptocurrency Payment Checkout
+
+> GOLDOGE Acquire: A fully-featured Web3 cryptocurrency payment checkout supporting multiple payment methods and internationalization.
+
+GOLDOGE Acquire is a modern Web3 payment solution that provides merchants and users with a secure and convenient cryptocurrency payment experience. It supports multiple blockchain networks, wallet integrations, and payment methods, while offering comprehensive internationalization support.
+
+## Project Overview
+
+GOLDOGE Acquire is a Single Page Application (SPA) built with React 19, TypeScript, and Vite, specifically designed for handling cryptocurrency payment transactions. The checkout supports multiple payment methods, including Web3 wallet payments, QR code transfers, and account payments through GOLDOGE, Gate.io, Binance, and more.
+
+## Tech Stack
+
+### Core Framework
+- **React 19** - Modern React framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool
+- **pnpm** - Efficient package manager
+
+### Web3 Integration
+- **RainbowKit + wagmi + viem** - EVM chain wallet connection (Ethereum, Polygon, Optimism, Arbitrum, Base, BSC)
+- **Solana Wallet Adapter** - Solana blockchain support (Phantom and other wallets)
+- **TronWeb** - Tron blockchain support (OKX Wallet, TronLink)
+
+### UI and Styling
+- **RainbowKit** - Web3 wallet connection UI
+- **Shadcn/ui (Radix UI)** - Unstyled component library
+- **TailwindCSS** - Utility-first CSS framework
+- **Motion** - Animation library
+
+### State Management and Tools
+- **Zustand** - Lightweight state management
+- **ahooks** - React Hooks utility library
+- **Axios** - HTTP client
+- **BiomeJS** - Code formatting and linting tool
+
+## Main Features
+
+### Payment Methods
+1. **GOLDOGE Account Payment** - Zero gas fees, instant settlement
+2. **Gate.io Payment** - Gate.io account payment
+3. **Binance Payment** - Binance account payment
+4. **Web3 Wallet Payment** - Supports MetaMask, OKX Wallet, Coinbase Wallet, Trust Wallet, Bitget, and more
+5. **QR Code Transfer** - Generate QR codes for wallet scan-to-pay
+
+### Supported Blockchain Networks
+
+#### EVM Chains
+- Ethereum (Mainnet)
+- Polygon
+- Optimism
+- Arbitrum
+- Base
+- BSC (Binance Smart Chain)
+
+#### Non-EVM Chains
+- Solana (Mainnet)
+- Tron (Mainnet)
+
+### Payment State Management
+- ✅ **Payment Success** - Order completed, displaying receipt and transaction hash
+- ⚠️ **Payment Warning** - Partial payment received, requires balance replenishment
+- ⏱️ **Payment Pending** - Transaction submitted, awaiting block confirmation
+- ❌ **Order Timeout** - Payment timeout exceeded, requires order regeneration
+
+### Device Adaptation
+- **Mobile** (mobile/tablet) - Responsive H5 pages optimized for touch interactions
+- **Desktop** (desktop) - PC page layout with complete payment flow
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable components
+│   ├── ui/            # Shadcn/ui base components
+│   ├── modal/         # Modal components (payment, wallet selection, address selection, etc.)
+│   ├── notice/        # Notification component
+│   └── footer/        # Footer component
+├── pages/             # Page components
+│   ├── acquire/       # Payment checkout page (H5/PC responsive)
+│   ├── success/       # Payment success page
+│   ├── timeout/       # Order timeout page
+│   └── layout.tsx     # Root layout component
+├── hooks/             # Custom Hooks
+│   ├── useCountdown.ts    # Countdown Hook
+│   ├── useDeviceType.ts   # Device type detection
+│   └── useWebTracker.ts   # Web tracking analytics
+├── store/             # Zustand state management
+│   ├── useChooseWalletStore.ts   # Wallet selection state
+│   ├── useCountdownStore.ts      # Countdown state
+│   ├── useCryptoStore.ts         # Crypto payment state
+│   ├── useNoticeStore.ts         # Notification state
+│   ├── usePaymentStore.ts        # Payment state
+│   └── useTronStore.ts           # Tron wallet state
+├── request/           # API request layer
+│   ├── http-client.ts  # HTTP client
+│   ├── index.ts       # API request wrapper
+│   └── PayPub.ts      # PayPub API interface
+├── config/            # Configuration files
+│   └── wagmi.ts       # Wagmi and RainbowKit configuration
+├── constant/          # Constant definitions
+│   ├── enum.ts        # Enum definitions (payment methods, payment states, etc.)
+│   └── index.tsx      # Chain and wallet constants
+├── i18n/              # Internationalization
+│   └── index.ts       # Multi-language translations (5 languages)
+├── utils/             # Utility functions
+│   └── index.tsx      # Common utility functions
+└── assets/            # Static resources (SVG icons)
+```
+
+## API Interfaces
+
+The project calls backend APIs through the `PayPub` class:
+
+- `getOrderInfo` - Get order information
+- `getOrderStatus` - Get order status (polling)
+- `getCurrencyChain` - Get currency chain payment information
+
+All API requests are wrapped with Axios, supporting automatic language detection and error handling.
+
+## Internationalization Support
+
+Supports 5 languages, automatically matched based on browser language:
+
+- **Simplified Chinese** (`zh`)
+- **Traditional Chinese** (`zh-Hant`)
+- **English** (`en`)
+- **Japanese** (`ja`)
+- **Korean** (`ko`)
+
+All text content is centrally managed through `src/i18n/index.ts`, including page titles, button text, notification messages, etc.
+
+## Theme System
+
+Supports light/dark theme switching:
+
+- Automatically matches browser theme
+- Supports manual switching
+- Smooth theme transition animations (using View Transitions API)
+- Implemented with TailwindCSS dark mode and CSS variables
+
+## Core Features
+
+### Web3 Wallet Integration
+- **EVM Wallets**: MetaMask, OKX Wallet, Coinbase Wallet, Trust Wallet, Bitget, WalletConnect
+- **Solana Wallets**: Phantom
+- **Tron Wallets**: OKX Wallet, TronLink
+
+### Payment Flow
+1. User accesses payment page via URL parameter `idno`
+2. Retrieve order information and supported payment methods
+3. Select payment currency and network
+4. Connect wallet or generate receiving QR code
+5. Execute payment transaction
+6. Poll order status and display payment results
+
+### Countdown Feature
+- Display order payment countdown
+- Automatically redirect to timeout page when expired
+- Supports custom countdown format
+
+### Responsive Design
+- Automatically detects device type (mobile/tablet/desktop)
+- Different UI layouts for mobile and desktop
+- Optimized for touch and mouse interactions
+
+## Development Commands
+
+- `pnpm dev` - Start development server
+- `pnpm build:sandbox` - Build sandbox environment version
+- `pnpm build:production` - Build production environment version
+- `pnpm format` - Code formatting (BiomeJS)
+- `pnpm run swagger` - Generate TypeScript API types from Swagger
+
+## Sitemap
+
+https://pay.goldoge.com/sitemap.xml
+
+## Contact
+
+- **Support Email**: support@goldoge.com
+- **Official Website**: https://goldoge.com/
+
+## Related Links
+
+- [GOLDOGE Official Website](https://goldoge.com/): GOLDOGE - Next-Generation Decentralized Financial Services Platform
+- [WalletConnect Cloud](https://cloud.walletconnect.com/): Get WalletConnect Project ID
+- [RainbowKit Documentation](https://www.rainbowkit.com/): Web3 wallet connection UI library
+- [wagmi Documentation](https://wagmi.sh/): React Hooks for Ethereum
+
+## Bot Access Policy
+
+GOLDOGE preferences for AI/LLM access, training, and content usage:
+
+- **User-agent: gptbot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: claudebot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: google-extended**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: perplexitybot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: neevabot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: youbot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: ccbot** (Common Crawl)  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: duckduckbot** (DuckDuckGo AI)  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: yandexbot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+- **User-agent: archive.org_bot**  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes
+
+### Default Rule for Unspecified or Future Bots
+
+- **User‑agent: \***  
+  Allow‑Training: yes  
+  Allow‑Retrieval: yes

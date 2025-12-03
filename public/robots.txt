@@ -1,0 +1,8 @@
+# *
+User-agent: *
+
+# Host
+Host: https://goldoge.com/
+
+# Sitemaps
+Sitemap: https://goldoge.com/sitemap.xml

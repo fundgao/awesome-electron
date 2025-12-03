@@ -1,6 +1,11 @@
-# awesome-electron
+# React + TypeScript + Vite
 
-## [教程](https://www.electronjs.org/zh/docs/latest/tutorial/quick-start)
+## 内嵌App H5项目
+- 开发 Bridge
+- 路由 多个项目单独路由
+- 多语言 有url传入，默认en
 
-## Install
-* 
+## 依赖库
+
+- react-router https://reactrouter.com/start/framework/routing
+- Vite https://vite.dev/guide/
