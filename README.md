@@ -22,7 +22,7 @@ GOLDOGE Embed H5 是一个基于 React 19 和 Vite 构建的现代化 H5 应用�
 ## 🛠 技术栈
 
 ### 核心框架
-- **React** `^19.2.0` - 用户界面库
+- **React** `^19.2.1` - 用户界面库
 - **TypeScript** `~5.9.3` - 类型安全的 JavaScript 超集
 - **Vite** `rolldown-vite@7.2.5` - 下一代前端构建工具（基于 Rolldown）
 

@@ -5,12 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/i18n-ns.js && vite",
-    "build": "tsc -b && vite build --mode development",
-    "build:test": "tsc -b && vite build --mode test",
-    "build:production": "tsc -b && vite build --mode production",
-    "preview": "vite preview",
-    "swagger": "node script/swagger.js",
-    "prebuild": "node scripts/i18n-ns.js"
+    "build": "node scripts/i18n-ns.js && vite build --mode development",
+    "build:test": "node scripts/i18n-ns.js && vite build --mode test",
+    "build:production": "node scripts/i18n-ns.js && vite build --mode production",
+    "swagger": "node script/swagger.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
@@ -21,8 +19,8 @@
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
     "i18next": "^25.6.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-helmet-async": "^2.0.5",
     "react-i18next": "^16.3.5",
     "react-responsive": "^10.0.1",

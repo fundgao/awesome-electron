@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import resources from '@/i18n-ns.ts'
+import resources from './i18n-ns.ts'
 import { detectLanguage } from '@/utils'
 
 const namespaces = Object.keys(resources.us || {})

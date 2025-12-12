@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const localesDir = path.resolve(__dirname, '../src/locales')
-const outputFile = path.resolve(__dirname, '../src/i18n-ns.ts')
+const outputFile = path.resolve(__dirname, '../src/i18n/i18n-ns.ts')
 
 if (!fs.existsSync(localesDir)) {
   console.error('src/locales 目录不存在！')

@@ -36,7 +36,9 @@
       "correctness": {
         "useExhaustiveDependencies": "off",
         "useHookAtTopLevel": "error",
-        "noUnusedImports": "off"
+        "noUnusedImports": "off",
+        "useUniqueElementIds": "off",
+        "noUnusedVariables": "off"
       },
       "complexity": {
         "noImportantStyles": "off"

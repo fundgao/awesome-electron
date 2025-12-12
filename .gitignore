@@ -55,4 +55,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-i18n-ns.ts
+*i18n-ns.ts
